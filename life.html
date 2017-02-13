@@ -1,0 +1,83 @@
+<script>
+
+    function init(width, height) {
+        var arr = [];
+        for (var i = 0; i < height; i++) {
+            arr[i] = [];
+            for (var elem2 = 0; elem2 < width; elem2++) {
+                arr[i][elem2] = Math.random() < 0.5;
+            }
+        }
+        return arr;
+    }
+
+
+    function vision(arr) {
+        var str = '';
+        for (var i = 0; i < arr.length; i++) {
+            for (var elem2 = 0; elem2 < arr[i].length; elem2++) {
+                str += arr[i][elem2] ? '*' : ' '; 
+            }
+            str = str + "\n";
+        }
+        return str;
+    }
+
+
+    function math(arr, i, elem2) {
+        var sum = 0;
+        sum += (i < arr.length - 1) && (arr[i + 1][elem2 - 1]) ? 1 : 0 ;
+        sum += arr[i][elem2 - 1] ? 1 : 0 ;
+        sum +=i > 0 && arr[i - 1][elem2 - 1] ? 1 : 0 ;
+
+        sum += i < arr.length - 1 && arr[i + 1][elem2] ? 1 : 0 ;
+        sum += i > 0 && arr[i - 1][elem2] ? 1 : 0 ;
+
+        sum += i > 0 && arr[i - 1][elem2 + 1] ? 1 : 0 ;
+        sum += arr[i][elem2 + 1] ? 1 : 0 ;
+        sum += i < arr.length - 1 && arr[i + 1][elem2 + 1] ? 1 : 0 ;
+        return sum;
+    }
+
+
+    function tick(arr) {
+        var array = [];
+        for (var i = 0; i < arr.length; i++) {
+            array[i] = [];
+            for (var elem2 = 0; elem2 < arr[i].length; elem2++) {
+                var neibl = 0;
+                neibl = math(arr, i, elem2);
+                if (arr[i][elem2] && (neibl > 3 || neibl < 2)) {
+                    array[i][elem2] = false;
+                } else if (arr[i][elem2] == false && neibl == 3) {
+                    array[i][elem2] = true;
+                } else {
+                    array[i][elem2] = arr[i][elem2];
+                }
+            }
+        }
+        return array;
+    }
+
+    function start() {
+        var height = document.getElementById("inputForHeight").value;
+        var width = document.getElementById("widthInput").value;
+
+        var arr = init(width, height);
+
+        setInterval(function () {
+            arr = tick(arr);
+            console.clear();
+            console.log(vision(arr));
+        }, 300);
+    }
+</script>
+<label>width
+    <input type="number" id="widthInput"/>
+</label>
+<br/>
+<label>Height
+    <input type="number" id="inputForHeight"/>
+</label>
+<br/>
+<input type="button" value="Go!" onclick="start()"/>

@@ -1,0 +1,106 @@
+<script>
+//    console.log(window);
+//    window.x = 4;
+    var x=4;
+    y=6;
+
+    var arr = [];
+
+    var obj = {};
+    obj.x = 1;
+
+    var obj2 = {x: 1, y: 2}; //json - java script object notation
+
+    function q(x,y){
+
+    }
+
+
+    class Point2d {
+        constructor(xParam, yParam) {
+            this.x = xParam;
+            this.y = yParam;
+//            this.sum = x + y;
+            this.sum = this.x + yParam;
+            this.sum = xParam + this.y;
+            this.sum = xParam + yParam;
+            this.sum = this.x+this.y;
+
+            var tmp = 1;
+        }
+
+        calcDistance() {
+            var tmp = 10;
+            return Math.sqrt(this.x*this.x+this.y*this.y) * tmp;
+        }
+    }
+
+    var point1= new Point2d(x,y);
+    point2=new Point2d(3,4);
+    point3=new Point2d(30,40);
+    console.log(obj2);
+    console.log(point1);
+    console.log(point2);
+    console.log(point3);
+    console.log(point2.x, point2.y);
+
+
+
+    console.log(point1.calcDistance());
+    console.log(point2.calcDistance());
+
+    x = 14;
+    y = 15;
+
+    console.log(point1);
+    console.log(point1.calcDistance());
+    //console.log(tmp);
+
+class Wheel {
+    constructor(radius){
+        this.radius=radius;
+        function willLenght(){
+            var willLenght1= Math.PI*2*radius;
+            console.log(willLenght1);
+            return willLenght1;
+
+        };
+        this.Lenght=willLenght();
+
+    }
+
+}
+  class Bike{
+       constructor(name){
+           this.myBike=name;
+           this.frontWheel= new Wheel(29);
+           this.rearWheel=new Wheel(29);
+       }
+
+  }
+
+    var bike1 = new Bike("my best bike");
+     bike2 = new Bike("my second bike");
+    console.log(bike1,bike2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
